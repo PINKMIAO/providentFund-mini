@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baven.dao.UnitMapper">
+
+    <insert id="addUnit" parameterType="unit">
+        insert into tb002 (UNITACCNUM, UNITACCNAME, UNITADDR, ORGCODE, UNITCHAR, UNITKIND, SALARYDATE, UNITPHONE, UNITLINKMAN, UNITAGENTPAPNO, BALANCE, BASENUMBER, UNITPROP, PERPROP, UNITPAYSUM, PERPAYSUM, PERSNUM, CREATDATE, REMARK)
+        values (#{unitAccNum}, #{unitAccName}, #{unitAddr}, #{orgCode}, #{unitChar}, #{unitKind}, #{salaryDate}, #{unitPhone}, #{unitLinkMan}, #{unitAgentPaPno}, #{balance}, #{baseNumber}, #{unitProp}, #{perProp}, #{unitPaySum}, #{perPaySum}, #{perSNum}, #{creatDate}, #{remark});
+    </insert>
+    <select id="getUnitByNum" resultType="unit">
+        select * from tb002 where unitAccNum = #{unitAccNum};
+    </select>
+    <update id="updateUnit">
+        update tb002 set UNITACCNAME = #{unitAccName}, UNITADDR = #{unitAddr}, ORGCODE = #{orgCode}, UNITCHAR = #{unitChar}, UNITKIND = #{unitKind}, SALARYDATE = #{salaryDate}, UNITPHONE = #{unitPhone}, UNITLINKMAN = #{unitLinkMan}, UNITAGENTPAPNO = #{unitAgentPaPno}, ACCSTATE = #{accState}, BALANCE = #{balance}, BASENUMBER = #{baseNumber}, UNITPROP = #{unitProp}, PERPROP = #{perProp}, UNITPAYSUM = #{unitPaySum}, PERPAYSUM = #{perPaySum}, PERSNUM = #{perSNum}, LASTPAYDATE = #{lastPayDate}, INSTCODE = #{instCode}, OP = #{OP}, CREATDATE = #{creatDate}, REMARK = #{remark}
+        where UNITACCNUM = #{unitAccNum};
+    </update>
+    <select id="getSEQ" resultType="java.lang.Integer">
+        select SEQ from tb001 where SEQNAME = #{seqName};
+    </select>
+    <update id="updateSEQ" parameterType="map">
+        update tb001 set SEQ = #{seq} where SEQNAME = #{seqName};
+    </update>
+    <update id="updatePerSNum" parameterType="map">
+        update tb002 set PERSNUM = #{perNum} where UNITACCNUM = #{unitAccNum};
+    </update>
+    <select id="getPerSNum" resultType="java.lang.Integer">
+        select PERSNUM from tb002 where UNITACCNUM = #{unitAccNum};
+    </select>
+
+    <select id="judeOrgAjax" resultType="java.lang.Integer">
+        select count(ORGCODE) from tb002 where ORGCODE = #{orgCode} limit 1;
+    </select>
+    <select id="getMsgAccNumAjax" resultType="unit">
+        select UNITACCNAME, UNITPROP, PERPROP
+        from tb002
+        where UNITACCNUM = #{accNum};
+    </select>
+
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baven.dao.PersonMapper">
+
+    <insert id="addPerson" parameterType="person">
+        insert into tb003 (USERNAME, USERID, USERIDTYPE,ACCNUM, UNITACCNUM, UNITPROP, INDIPROP, BASENUMBER, OPENDATE)
+        values (#{userName}, #{userID}, #{userIDType}, #{accNum}, #{unitAccNum}, #{unitProp}, #{perProp}, #{baseNumber}, #{openDate});
+    </insert>
+    <update id="updateSEQ" parameterType="map">
+        update tb001 set SEQ = #{seq} where SEQNAME = #{seqName};
+    </update>
+    <update id="updatePerson">
+        update tb003 set USERNAME = #{userName}, USERIDTYPE = #{userIDType}, USERID = #{userID}, UNITACCNUM = #{unitAccNum} where ACCNUM = #{accNum};
+    </update>
+    <select id="getPersonByNum" resultType="person">
+        select * from tb003 where ACCNUM = #{perAccNum};
+    </select>
+    <select id="getSEQ" resultType="java.lang.Integer">
+        select SEQ from tb001 where SEQNAME = #{seqName};
+    </select>
+
+</mapper>
