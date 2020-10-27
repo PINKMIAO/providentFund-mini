@@ -8,6 +8,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * Mybatis 工具类
+ */
 public class MybatisUtils {
 
     private static SqlSessionFactory sqlSessionFactory;

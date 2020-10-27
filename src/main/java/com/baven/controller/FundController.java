@@ -20,10 +20,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 控制器主类
+ */
 @Controller
 @RequestMapping("/fund")
 public class FundController {
 
+    /**
+     * 单位、个人、系统接口声明
+     */
     @Autowired
     @Qualifier("unitService")
     private UnitService unitService;
@@ -34,6 +40,11 @@ public class FundController {
     @Qualifier("systemService")
     private SystemService systemService;
 
+    /**
+     * 创建单位提示 Ajax
+     * @param orgCode 单位编码
+     * @return
+     */
     @RequestMapping("/orgAjax")
     @ResponseBody
     public String orgAjax(String orgCode){
@@ -53,6 +64,12 @@ public class FundController {
         }
         return msg;
     }
+
+    /**
+     * 规定数字范围 Ajax
+     * @param prop 参数
+     * @return
+     */
     @RequestMapping("/propAjax")
     @ResponseBody
     public String propAjax(double prop) {
@@ -67,6 +84,12 @@ public class FundController {
         }
         return msg;
     }
+
+    /**
+     * 证件选择提示 Ajax
+     * @param idType 证件类型
+     * @return
+     */
     @RequestMapping("/idAjax")
     @ResponseBody
     public String idAjax(String idType){
@@ -79,6 +102,12 @@ public class FundController {
         }
         return msg;
     }
+
+    /**
+     * 获取单位信息 Ajax
+     * @param accNum
+     * @return
+     */
     @RequestMapping("/accNumAjax")
     @ResponseBody
     public String accNumAjax(String accNum){
@@ -108,6 +137,10 @@ public class FundController {
     }
 
 
+    /**
+     * 页面跳转
+     * @return
+     */
     @RequestMapping("/toMain")
     public String toMain(){
         return "main";
